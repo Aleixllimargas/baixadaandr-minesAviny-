@@ -913,7 +913,7 @@ a.route-name:hover {
       <ul class="info-detail-list">
         <li>Vehicles de tracció no motoritzada construïts pels participants</li>
         <li>Màxim 15 persones per equip</li>
-        <li>Es valora l'originalitat, velocitat i seguretat</li>
+        <li>Es valora l'originalitat, la velocitat i la seguretat</li>
         <li>Premi especial al vehicle més original</li>
         <li>Categories per a totes les edats</li>
       </ul>
@@ -1125,7 +1125,7 @@ a.route-name:hover {
     </div>
     <div class="submit-row">
       <div class="inscripcions-counter">
-      <span class="counter-num" id="counter">—</span>
+      <span class="counter-num" id="counter">0</span>
       <span class="counter-label">equips ja apuntats</span>
     </div>
       <button class="btn-main" onclick="enviarInscripcio()">Confirmar inscripció</button>
@@ -1266,7 +1266,7 @@ setInterval(updateCountdown, 1000);
 async function carregarComptador() {
   try {
     const url = 'https://script.google.com/macros/s/AKfycbzflYAPhCxm_A3PILrxVGhhpkyRUs6RCHeqA4DYvbjtudLgOCVvUeqcf_ZLnTjHwMfN/exec';
-    const res = await fetch(url);
+    const res = await fetch(url, { mode: 'no-cors' });
     const data = await res.json();
     const total = data.count;
     document.getElementById('counter').textContent = total;
