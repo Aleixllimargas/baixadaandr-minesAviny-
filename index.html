@@ -912,7 +912,7 @@ a.route-name:hover {
       <p>Dues categories — Infantil i Adults — amb els seus propis premis: el vehicle més creatiu i el vehicle més ràpid. Que guanyi el millor enginy!</p>
       <ul class="info-detail-list">
         <li>Vehicles de tracció no motoritzada construïts pels participants</li>
-        <li>Màxim 4 persones per equip</li>
+        <li>Màxim 15 persones per equip</li>
         <li>Es valora l'originalitat, velocitat i seguretat</li>
         <li>Premi especial al vehicle més original</li>
         <li>Categories per a totes les edats</li>
@@ -1009,6 +1009,7 @@ a.route-name:hover {
       <div class="cat-age">Fins a 17 anys</div>
       <div class="cat-name">INFANTIL</div>
       <div class="cat-price">Gratuït</div>
+      <div style="font-size:0.8rem; color:var(--orange-light); margin-top:6px;">👕 Samarreta inclosa per a cada perticipant</div>
       <div class="cat-places">
         <div class="places-label" id="places-infantil">— equips inscrits</div>
         <div class="places-bar"><div class="places-fill" id="barra-infantil" style="width:0%"></div></div>
@@ -1018,6 +1019,7 @@ a.route-name:hover {
       <div class="cat-age">+18 anys</div>
       <div class="cat-name">ADULTS</div>
       <div class="cat-price">Gratuït</div>
+      <div style="font-size:0.8rem; color:var(--orange-light); margin-top:6px;">👕 Samarreta inclosa per a cada perticipant</div>
       <div class="cat-places">
         <div class="places-label" id="places-adults">— equips inscrits</div>
         <div class="places-bar"><div class="places-fill" id="barra-adults" style="width:0%"></div></div>
@@ -1099,16 +1101,27 @@ a.route-name:hover {
       <label>Telèfon de contacte</label>
       <input type="tel" placeholder="600 000 000" required pattern="[0-9]{9}" title="El telèfon ha de tenir 9 dígits">
     </div>
-    <div class="form-field">
+ <div class="form-field">
       <label>Nombre de membres</label>
-      <select required>
-        <option>1 persona</option>
-        <option selected>2 persones</option>
+      <select required onchange="actualitzarTalles()">
+        <option selected>1 persona</option>
+        <option>2 persones</option>
         <option>3 persones</option>
         <option>4 persones</option>
         <option>5 persones</option>
         <option>6 persones</option>
+        <option>7 persones</option>
+        <option>8 persones</option>
+        <option>9 persones</option>
+        <option>10 persones</option>
+        <option>11 persones</option>
+        <option>12 persones</option>
+        <option>13 persones</option>
+        <option>14 persones</option>
+        <option>15 persones</option>
       </select>
+    </div>
+    <div class="form-full" id="talles-container"></div>
     </div>
     <div class="submit-row">
       <div class="inscripcions-counter">
@@ -1210,7 +1223,7 @@ a.route-name:hover {
         <label>Missatge</label>
         <textarea placeholder="La teva consulta..."></textarea>
       </div>
-      <button class="btn-main" style="width:100%; margin-top: 0.5rem;" onclick="mostrarModal(true, 'MISSATGE ENVIAT', 'Gràcies! Et respondrem el més aviat possible.')">Enviar missatge</button>
+      <button class="btn-main" style="width:100%; margin-top: 0.5rem;" onclick="alert('Missatge enviat! Et respondrem aviat.')">Enviar missatge</button>
     </div>
   </div>
 </section>
@@ -1267,7 +1280,28 @@ async function carregarComptador() {
   }
 }
 carregarComptador();
-
+actualitzarTalles();
+function actualitzarTalles() {
+  const select = document.querySelector('select');
+  const nombre = parseInt(select.value);
+  const container = document.getElementById('talles-container');
+  container.innerHTML = '';
+  for (let i = 1; i <= nombre; i++) {
+    container.innerHTML += `
+      <div class="form-field" style="margin-top:1rem;">
+        <label>Talla membre ${i}</label>
+        <select id="talla-${i}" required>
+          <option value="">Selecciona una talla</option>
+          <option>XS</option>
+          <option>S</option>
+          <option>M</option>
+          <option>L</option>
+          <option>XL</option>
+          <option>XXL</option>
+        </select>
+      </div>`;
+  }
+}
 function selectCat(el) {
   document.querySelectorAll('.cat-box').forEach(c => c.classList.remove('active'));
   el.classList.add('active');
@@ -1297,12 +1331,25 @@ async function enviarInscripcio() {
     return;
   }
   const url = 'https://script.google.com/macros/s/AKfycbzflYAPhCxm_A3PILrxVGhhpkyRUs6RCHeqA4DYvbjtudLgOCVvUeqcf_ZLnTjHwMfN/exec';
+const nombre = parseInt(camps[4].value);
+  const talles = [];
+  for (let i = 1; i <= nombre; i++) {
+    const talla = document.getElementById(`talla-${i}`);
+    if (talla && !talla.value) {
+      mostrarModal(false, 'FALTEN TALLES', `Falta la talla del membre ${i}.`);
+      return;
+    }
+    talles.push(talla ? talla.value : '—');
+  }
+
   const dades = {
     equip:       camps[0].value,
     responsable: camps[1].value,
     correu:      camps[2].value,
     telefon:     camps[3].value,
-    membres:     camps[4].value
+    membres:     camps[4].value,
+    talles:      talles.join(', ')
+  };
   };
   await fetch(url, { method: 'POST', body: JSON.stringify(dades), mode: 'no-cors' });
   mostrarModal(true, 'INSCRIPCIÓ ENVIADA', 'Gràcies! Rebràs un correu de confirmació en 24h.');
