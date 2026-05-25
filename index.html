@@ -359,12 +359,23 @@
     background: var(--dark2);
     box-shadow: 0 0 0 4px rgba(255,90,0,0.15);
   }
-  .route-name {
-    font-size: 0.8rem;
-    font-weight: 500;
-    white-space: nowrap;
-    padding: 0 8px;
-  }
+.route-name {
+  font-size: 0.8rem;
+  font-weight: 500;
+  white-space: nowrap;
+  padding: 0 8px;
+}
+a.route-name {
+  color: var(--light);
+  text-decoration: none;
+}
+a.route-name::before {
+  display: none;
+}
+a.route-name:hover {
+  color: var(--orange);
+  text-decoration: underline;
+}
   .route-km {
     font-size: 0.65rem;
     color: var(--gray);
@@ -697,7 +708,29 @@
     transition: border-color 0.2s;
   }
   .contact-form textarea:focus { border-color: var(--orange); }
-
+/* COMPTADOR INSCRIPCIONS */
+.inscripcions-counter {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  background: rgba(255,90,0,0.08);
+  border: 1px solid rgba(255,90,0,0.2);
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+}
+.counter-num {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  color: var(--orange);
+  line-height: 1;
+}
+.counter-label {
+  font-size: 0.85rem;
+  color: var(--gray);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
 /* MODAL CONFIRMACIÓ */
 .modal-overlay {
   position: fixed;
@@ -774,25 +807,36 @@
   .hero-meta { animation-delay: 0.2s; }
   .hero-btns { animation-delay: 0.3s; }
 
-  @media (max-width: 768px) {
-    nav { padding: 1rem 1.5rem; }
-    .nav-links { display: none; }
-    .hero { padding: 0 1.5rem 3rem; }
-    section { padding: 3rem 1.5rem; }
-    .info-layout, .contact-layout { grid-template-columns: 1fr; gap: 2rem; }
-    .form-grid { grid-template-columns: 1fr; }
-    .photo-grid { grid-template-columns: repeat(2,1fr); }
-    .photo-item:first-child { grid-column: span 2; }
-    .video-grid { grid-template-columns: repeat(2,1fr); }
-    .countdown-section { flex-direction: column; align-items: flex-start; }
-  }
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  .hero { padding: 0 1.5rem 3rem; }
+  .hero h1 { font-size: clamp(3.5rem, 18vw, 6rem); }
+  .hero-meta { gap: 1rem; }
+  .hero-divider { display: none; }
+  .hero-btns { flex-direction: column; align-items: flex-start; }
+  .btn-main, .btn-ghost { width: 100%; text-align: center; }
+  section { padding: 3rem 1.5rem; }
+  .info-layout, .contact-layout { grid-template-columns: 1fr; gap: 2rem; }
+  .form-grid { grid-template-columns: 1fr; }
+  .photo-grid { grid-template-columns: repeat(2,1fr); }
+  .photo-item:first-child { grid-column: span 2; }
+  .countdown-section { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .countdown-boxes { flex-wrap: wrap; }
+  .categories-grid { grid-template-columns: 1fr; }
+  .submit-row { flex-direction: column; align-items: flex-start; }
+  .social-grid { grid-template-columns: 1fr 1fr; }
+  .footer { flex-direction: column; text-align: center; }
+  .route-visual { gap: 0; }
+  .inscripcions-counter { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+}
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">ANDROMINES</div>
+  <div class="nav-logo">ANDRÒMINES AVINYÓ</div>
   <ul class="nav-links">
     <li><a href="#info">Informació</a></li>
     <li><a href="#recorregut">Recorregut</a></li>
@@ -855,11 +899,6 @@
       <span class="count-num" id="mins">00</span>
       <div class="count-unit">Minuts</div>
     </div>
-    <span class="count-sep">:</span>
-    <div class="count-box">
-      <span class="count-num" id="secs">00</span>
-      <div class="count-unit">Segons</div>
-    </div>
   </div>
 </div>
 
@@ -887,7 +926,7 @@
       </div>
       <div class="stat-box">
         <div class="stat-icon">🏎</div>
-        <div class="stat-value">60+</div>
+        <div class="stat-value">10+</div>
         <div class="stat-label">Equips inscrits</div>
       </div>
       <div class="stat-box">
@@ -911,31 +950,31 @@
   <div class="route-visual">
     <div class="route-stop">
       <div class="route-dot"></div>
-      <div class="route-name">Plaça Major</div>
+      <a href="https://www.google.es/maps/place/Pla%C3%A7a+Dal%C3%AD,+08279+Aviny%C3%B3,+Barcelona/@41.8640616,1.967351,437m/data=!3m1!1e3!4m6!3m5!1s0x12a4fd201b6ff91f:0xf36214118efb4c20!8m2!3d41.864094!4d1.9688995!16s%2Fg%2F11_qzk5v1?entry=ttu&g_ep=EgoyMDI2MDUyMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="route-name">Plaça Dalí</a>
       <div class="route-km">Sortida</div>
     </div>
     <div class="route-line"></div>
     <div class="route-stop">
       <div class="route-dot"></div>
-      <div class="route-name">Passeig</div>
+      <a href="https://www.google.es/maps/place/41%C2%B051'51.2%22N+1%C2%B058'14.0%22E/@41.8642289,1.9656701,736m/data=!3m2!1e3!4b1!4m13!1m8!3m7!1s0x12a4fd2056e02add:0xd3bf5fec9369330d!2sPasseig,+08279+Aviny%C3%B3,+Barcelona!3b1!8m2!3d41.8649689!4d1.9706974!16s%2Fg%2F11b6_dy020!3m3!8m2!3d41.864229!4d1.970541?entry=ttu&g_ep=EgoyMDI2MDUyMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="route-name">Passeig</a>
       <div class="route-km">km 0.4</div>
     </div>
     <div class="route-line"></div>
     <div class="route-stop">
       <div class="route-dot"></div>
-      <div class="route-name">Plaça Municipal</div>
+      <a href="https://www.google.es/maps/place/41%C2%B051'49.8%22N+1%C2%B058'16.9%22E/@41.863845,1.9707173,184m/data=!3m2!1e3!4b1!4m4!3m3!8m2!3d41.863845!4d1.971361?entry=ttu&g_ep=EgoyMDI2MDUyMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="route-name">Plaça Major</a>
       <div class="route-km">km 0.9</div>
     </div>
     <div class="route-line"></div>
     <div class="route-stop">
       <div class="route-dot"></div>
-      <div class="route-name">Baixada de l'illa</div>
+      <a href="https://www.google.es/maps/place/41%C2%B051'49.7%22N+1%C2%B058'20.6%22E/@41.863796,1.9717533,184m/data=!3m2!1e3!4b1!4m4!3m3!8m2!3d41.863796!4d1.972397?entry=ttu&g_ep=EgoyMDI2MDUyMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="route-name">Baixada ctra principal</a>
       <div class="route-km">km 1.5</div>
     </div>
     <div class="route-line"></div>
     <div class="route-stop">
       <div class="route-dot"></div>
-      <div class="route-name">Meta</div>
+      <a href="https://www.google.es/maps/place/41%C2%B051'50.8%22N+1%C2%B058'24.1%22E/@41.864122,1.9727213,184m/data=!3m2!1e3!4b1!4m4!3m3!8m2!3d41.864122!4d1.973365?entry=ttu&g_ep=EgoyMDI2MDUyMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="route-name">Meta</a>
       <div class="route-km">km 2.1</div>
     </div>
   </div>
@@ -967,12 +1006,12 @@
 
   <div class="categories-grid" style="grid-template-columns: 1fr 1fr;">
     <div class="cat-box active" onclick="selectCat(this)">
-      <div class="cat-age">Fins 15 anys</div>
+      <div class="cat-age">Fins a 17 anys</div>
       <div class="cat-name">INFANTIL</div>
       <div class="cat-price">Gratuït</div>
       <div class="cat-places">
-        <div class="places-label">12 / 30 places</div>
-        <div class="places-bar"><div class="places-fill" style="width:40%"></div></div>
+        <div class="places-label" id="places-infantil">— equips inscrits</div>
+        <div class="places-bar"><div class="places-fill" id="barra-infantil" style="width:0%"></div></div>
       </div>
     </div>
     <div class="cat-box" onclick="selectCat(this)">
@@ -980,8 +1019,8 @@
       <div class="cat-name">ADULTS</div>
       <div class="cat-price">Gratuït</div>
       <div class="cat-places">
-        <div class="places-label">18 / 30 places</div>
-        <div class="places-bar"><div class="places-fill" style="width:60%"></div></div>
+        <div class="places-label" id="places-adults">— equips inscrits</div>
+        <div class="places-bar"><div class="places-fill" id="barra-adults" style="width:0%"></div></div>
       </div>
     </div>
   </div>
@@ -1072,6 +1111,10 @@
       </select>
     </div>
     <div class="submit-row">
+      <div class="inscripcions-counter">
+      <span class="counter-num" id="counter">—</span>
+      <span class="counter-label">equips ja apuntats</span>
+    </div>
       <button class="btn-main" onclick="enviarInscripcio()">Confirmar inscripció</button>
       <span class="submit-note">Rebràs un correu de confirmació en 24h</span>
     </div>
@@ -1091,8 +1134,9 @@
 
 <div id="2025" class="photo-panel">
   <div class="photo-grid">
-    <img src="fotos 2025/Foto_1.jpeg" alt="Sortida 2025" style="width:100%; height:100%; object-fit:cover;">
-    <div class="photo-item"><div class="photo-placeholder" style="background: linear-gradient(135deg, #001a2e, #003d6b);">🔧<span class="photo-label">Vehicles 2024</span></div></div>
+<div class="photo-item">
+  <img src="fotos_2025/Foto_1.jpeg" alt="Sortida 2025" style="width:100%; height:100%; object-fit:cover;">
+</div>    <div class="photo-item"><div class="photo-placeholder" style="background: linear-gradient(135deg, #001a2e, #003d6b);">🔧<span class="photo-label">Vehicles 2024</span></div></div>
     <div class="photo-item"><div class="photo-placeholder" style="background: linear-gradient(135deg, #1a001a, #4a0047);">🚀<span class="photo-label">Baixada 2024</span></div></div>
     <div class="photo-item"><div class="photo-placeholder" style="background: linear-gradient(135deg, #001a0a, #004a20);">🏆<span class="photo-label">Guanyadors 2024</span></div></div>
   </div>
@@ -1166,7 +1210,7 @@
         <label>Missatge</label>
         <textarea placeholder="La teva consulta..."></textarea>
       </div>
-      <button class="btn-main" style="width:100%; margin-top: 0.5rem;" onclick="alert('Missatge enviat! Et respondrem aviat.')">Enviar missatge</button>
+      <button class="btn-main" style="width:100%; margin-top: 0.5rem;" onclick="mostrarModal(true, 'MISSATGE ENVIAT', 'Gràcies! Et respondrem el més aviat possible.')">Enviar missatge</button>
     </div>
   </div>
 </section>
@@ -1189,29 +1233,46 @@
 
 <script>
 function updateCountdown() {
-  const target = new Date('2026-09-19T09:18:00');
+  const target = new Date('2026-09-19T09:00:00');
   const now = new Date();
   const diff = target - now;
   if (diff <= 0) {
-    ['days','hours','mins','secs'].forEach(id => document.getElementById(id).textContent = '00');
+    ['days','hours','mins'].forEach(id => document.getElementById(id).textContent = '00');
     return;
   }
   const d = Math.floor(diff / 86400000);
   const h = Math.floor((diff % 86400000) / 3600000);
   const m = Math.floor((diff % 3600000) / 60000);
-  const s = Math.floor((diff % 60000) / 1000);
   document.getElementById('days').textContent = String(d).padStart(2,'0');
   document.getElementById('hours').textContent = String(h).padStart(2,'0');
   document.getElementById('mins').textContent = String(m).padStart(2,'0');
-  document.getElementById('secs').textContent = String(s).padStart(2,'0');
 }
 updateCountdown();
 setInterval(updateCountdown, 1000);
+
+async function carregarComptador() {
+  try {
+    const url = 'https://script.google.com/macros/s/AKfycbzflYAPhCxm_A3PILrxVGhhpkyRUs6RCHeqA4DYvbjtudLgOCVvUeqcf_ZLnTjHwMfN/exec';
+    const res = await fetch(url);
+    const data = await res.json();
+    const total = data.count;
+    document.getElementById('counter').textContent = total;
+    document.getElementById('places-infantil').textContent = total + ' equips inscrits';
+    document.getElementById('places-adults').textContent = total + ' equips inscrits';
+    const percentatge = Math.min(100, (total / 40) * 100);
+    document.getElementById('barra-infantil').style.width = percentatge + '%';
+    document.getElementById('barra-adults').style.width = percentatge + '%';
+  } catch {
+    document.getElementById('counter').textContent = '—';
+  }
+}
+carregarComptador();
 
 function selectCat(el) {
   document.querySelectorAll('.cat-box').forEach(c => c.classList.remove('active'));
   el.classList.add('active');
 }
+
 async function enviarInscripcio() {
   const camps = [
     document.querySelector('input[placeholder="Ex: Els Turbo Bolets"]'),
@@ -1220,25 +1281,21 @@ async function enviarInscripcio() {
     document.querySelector('input[placeholder="600 000 000"]'),
     document.querySelector('select')
   ];
-
-const buits = camps.filter(c => !c.value.trim());
-if (buits.length > 0) {
-  mostrarModal(false, 'FALTEN CAMPS', `Tens ${buits.length} camp${buits.length > 1 ? 's' : ''} sense omplir.`);
-  return;
-}
-
-const correu = camps[2].value;
-if (!correu.includes('@')) {
-  mostrarModal(false, 'CORREU INCORRECTE', 'El correu electrònic ha de contenir @.');
-  return;
-}
-
-const telefon = camps[3].value.replace(/\s/g, '');
-if (!/^[0-9]{9}$/.test(telefon)) {
-  mostrarModal(false, 'TELÈFON INCORRECTE', 'El telèfon ha de tenir exactament 9 dígits.');
-  return;
-}
-
+  const buits = camps.filter(c => !c.value.trim());
+  if (buits.length > 0) {
+    mostrarModal(false, 'FALTEN CAMPS', `Tens ${buits.length} camp${buits.length > 1 ? 's' : ''} sense omplir.`);
+    return;
+  }
+  const correu = camps[2].value;
+  if (!correu.includes('@')) {
+    mostrarModal(false, 'CORREU INCORRECTE', 'El correu electrònic ha de contenir @.');
+    return;
+  }
+  const telefon = camps[3].value.replace(/\s/g, '');
+  if (!/^[0-9]{9}$/.test(telefon)) {
+    mostrarModal(false, 'TELÈFON INCORRECTE', 'El telèfon ha de tenir exactament 9 dígits.');
+    return;
+  }
   const url = 'https://script.google.com/macros/s/AKfycbzflYAPhCxm_A3PILrxVGhhpkyRUs6RCHeqA4DYvbjtudLgOCVvUeqcf_ZLnTjHwMfN/exec';
   const dades = {
     equip:       camps[0].value,
@@ -1249,8 +1306,8 @@ if (!/^[0-9]{9}$/.test(telefon)) {
   };
   await fetch(url, { method: 'POST', body: JSON.stringify(dades), mode: 'no-cors' });
   mostrarModal(true, 'INSCRIPCIÓ ENVIADA', 'Gràcies! Rebràs un correu de confirmació en 24h.');
+  carregarComptador();
 }
-
 function mostrarModal(exit, titol, text) {
   const color = exit ? '#22c55e' : '#ef4444';
   const icon = exit ? '✅' : '❌';
@@ -1263,6 +1320,12 @@ function mostrarModal(exit, titol, text) {
 
 function tancarModal() {
   document.getElementById('modal').classList.remove('show');
+}
+function switchYear(year, btn) {
+  document.querySelectorAll('.media-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.photo-panel').forEach(p => p.classList.add('hidden'));
+  document.getElementById(year).classList.remove('hidden');
 }
 </script>
 </body>
