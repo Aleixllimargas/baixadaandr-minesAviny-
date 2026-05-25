@@ -1350,7 +1350,6 @@ const nombre = parseInt(camps[4].value);
     membres:     camps[4].value,
     talles:      talles.join(', ')
   };
-  };
   await fetch(url, { method: 'POST', body: JSON.stringify(dades), mode: 'no-cors' });
   mostrarModal(true, 'INSCRIPCIÓ ENVIADA', 'Gràcies! Rebràs un correu de confirmació en 24h.');
   carregarComptador();
