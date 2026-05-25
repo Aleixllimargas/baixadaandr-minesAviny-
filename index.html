@@ -908,7 +908,7 @@ a.route-name:hover {
     <div class="info-text">
       <div class="section-eyebrow">Sobre la cursa</div>
       <h2 class="section-title">L'ENGINY<br>GUANYA</h2>
-      <p>La Baixada d'Andromines és l'esdeveniment on la creativitat i la destresa mecànica es troben al cor d'Avinyó. Equips de totes les edats construeixen els seus propis vehicles no motoritzats i competeixen en una baixada d'adrenalina pels carrers del poble.</p>
+      <p>La Baixada d'Andròmines és l'esdeveniment on la creativitat i la destresa mecànica es troben al cor d'Avinyó. Equips de totes les edats construeixen els seus propis vehicles no motoritzats i competeixen en una baixada d'adrenalina pels carrers del poble.</p>
       <p>Dues categories — Infantil i Adults — amb els seus propis premis: el vehicle més creatiu i el vehicle més ràpid. Que guanyi el millor enginy!</p>
       <ul class="info-detail-list">
         <li>Vehicles de tracció no motoritzada construïts pels participants</li>
@@ -925,9 +925,9 @@ a.route-name:hover {
         <div class="stat-label">Participants esperats</div>
       </div>
       <div class="stat-box">
-        <div class="stat-icon">🏎</div>
-        <div class="stat-value">10+</div>
-        <div class="stat-label">Equips inscrits</div>
+        <div class="stat-icon">🏁</div>
+        <div class="stat-value">4ª</div>
+        <div class="stat-label">Edició oficial</div>
       </div>
       <div class="stat-box">
         <div class="stat-icon">🏆</div>
@@ -1009,7 +1009,7 @@ a.route-name:hover {
       <div class="cat-age">Fins a 17 anys</div>
       <div class="cat-name">INFANTIL</div>
       <div class="cat-price">Gratuït</div>
-      <div style="font-size:0.8rem; color:var(--orange-light); margin-top:6px;">👕 Samarreta inclosa per a cada perticipant</div>
+      <div style="font-size:0.8rem; color:var(--orange-light); margin-top:6px;">👕 Samarreta inclosa per a cada participant</div>
       <div class="cat-places">
         <div class="places-label" id="places-infantil">— equips inscrits</div>
         <div class="places-bar"><div class="places-fill" id="barra-infantil" style="width:0%"></div></div>
@@ -1019,7 +1019,7 @@ a.route-name:hover {
       <div class="cat-age">+18 anys</div>
       <div class="cat-name">ADULTS</div>
       <div class="cat-price">Gratuït</div>
-      <div style="font-size:0.8rem; color:var(--orange-light); margin-top:6px;">👕 Samarreta inclosa per a cada perticipant</div>
+      <div style="font-size:0.8rem; color:var(--orange-light); margin-top:6px;">👕 Samarreta inclosa per a cada participant</div>
       <div class="cat-places">
         <div class="places-label" id="places-adults">— equips inscrits</div>
         <div class="places-bar"><div class="places-fill" id="barra-adults" style="width:0%"></div></div>
@@ -1342,13 +1342,15 @@ const nombre = parseInt(camps[4].value);
     talles.push(talla ? talla.value : '—');
   }
 
+  const categoria = document.querySelector('.cat-box.active .cat-name').textContent;
   const dades = {
     equip:       camps[0].value,
     responsable: camps[1].value,
     correu:      camps[2].value,
     telefon:     camps[3].value,
     membres:     camps[4].value,
-    talles:      talles.join(', ')
+    talles:      talles.join(', '),
+    categoria:   categoria
   };
   await fetch(url, { method: 'POST', body: JSON.stringify(dades), mode: 'no-cors' });
   mostrarModal(true, 'INSCRIPCIÓ ENVIADA', 'Gràcies! Rebràs un correu de confirmació en 24h.');
