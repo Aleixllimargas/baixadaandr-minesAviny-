@@ -871,7 +871,7 @@ a.route-name:hover {
       <div class="hero-divider"></div>
       <div class="hero-meta-item">
         <span class="hero-meta-label">Premis</span>
-        <span class="hero-meta-value" style="color:var(--orange)">4 × 100€ + pernils</span>
+        <span class="hero-meta-value" style="color:var(--orange)">4 × 100€ + 4 pernils</span>
       </div>
     </div>
     <div class="hero-btns">
@@ -1125,7 +1125,7 @@ a.route-name:hover {
     </div>
     <div class="submit-row">
       <div class="inscripcions-counter">
-      <span class="counter-num" id="counter">0</span>
+      <span class="counter-num" id="counter">-</span>
       <span class="counter-label">equips ja apuntats</span>
     </div>
       <button class="btn-main" onclick="enviarInscripcio()">Confirmar inscripció</button>
@@ -1266,7 +1266,7 @@ setInterval(updateCountdown, 1000);
 async function carregarComptador() {
   try {
     const url = 'https://script.google.com/macros/s/AKfycbzflYAPhCxm_A3PILrxVGhhpkyRUs6RCHeqA4DYvbjtudLgOCVvUeqcf_ZLnTjHwMfN/exec';
-    const res = await fetch(url, { mode: 'no-cors' });
+    const res = await fetch(url);
     const data = await res.json();
     const total = data.count;
     document.getElementById('counter').textContent = total;
@@ -1280,7 +1280,6 @@ async function carregarComptador() {
   }
 }
 carregarComptador();
-actualitzarTalles();
 function actualitzarTalles() {
   const select = document.querySelector('select');
   const nombre = parseInt(select.value);
@@ -1302,6 +1301,7 @@ function actualitzarTalles() {
       </div>`;
   }
 }
+actualitzarTalles();
 function selectCat(el) {
   document.querySelectorAll('.cat-box').forEach(c => c.classList.remove('active'));
   el.classList.add('active');
