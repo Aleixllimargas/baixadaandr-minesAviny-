@@ -1265,7 +1265,7 @@ setInterval(updateCountdown, 1000);
 
 async function carregarComptador() {
   try {
-    const url = 'https://script.google.com/macros/s/AKfycbzflYAPhCxm_A3PILrxVGhhpkyRUs6RCHeqA4DYvbjtudLgOCVvUeqcf_ZLnTjHwMfN/exec';
+    const url = 'https://script.google.com/macros/s/AKfycbyOTH8mC7RaQVs3sC4y0S33F6vesE7oW-r9S0yrF9lKCNvCUXHgI1kEhB7BMni4jTOZ/exec';
     const res = await fetch(url);
     const data = await res.json();
     const total = data.count;
@@ -1330,8 +1330,8 @@ async function enviarInscripcio() {
     mostrarModal(false, 'TELÈFON INCORRECTE', 'El telèfon ha de tenir exactament 9 dígits.');
     return;
   }
-  const url = 'https://script.google.com/macros/s/AKfycbzflYAPhCxm_A3PILrxVGhhpkyRUs6RCHeqA4DYvbjtudLgOCVvUeqcf_ZLnTjHwMfN/exec';
-const nombre = parseInt(camps[4].value);
+  const url = 'https://script.google.com/macros/s/AKfycbyOTH8mC7RaQVs3sC4y0S33F6vesE7oW-r9S0yrF9lKCNvCUXHgI1kEhB7BMni4jTOZ/exec';
+  const nombre = parseInt(camps[4].value);
   const talles = [];
   for (let i = 1; i <= nombre; i++) {
     const talla = document.getElementById(`talla-${i}`);
