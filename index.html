@@ -528,7 +528,7 @@ a.route-name:hover {
     grid-template-columns: repeat(3, 1fr);
     gap: 3px;
   }
-  .photo-item {
+.photo-item {
     aspect-ratio: 4/3;
     overflow: hidden;
     cursor: pointer;
@@ -539,6 +539,12 @@ a.route-name:hover {
     grid-row: span 2;
     aspect-ratio: auto;
   }
+  .photo-item.gran {
+    grid-column: span 2;
+    grid-row: span 2;
+    aspect-ratio: auto;
+  }
+
   .photo-placeholder {
     width: 100%;
     height: 100%;
@@ -819,8 +825,9 @@ a.route-name:hover {
   section { padding: 3rem 1.5rem; }
   .info-layout, .contact-layout { grid-template-columns: 1fr; gap: 2rem; }
   .form-grid { grid-template-columns: 1fr; }
-  .photo-grid { grid-template-columns: repeat(2,1fr); }
-  .photo-item:first-child { grid-column: span 2; }
+  .photo-grid { grid-template-columns: repeat(3,1fr); }
+  .photo-item { aspect-ratio: 1/1; }
+  .photo-item:first-child { grid-column: span 2; grid-row: span 2; }
   .countdown-section { flex-direction: column; align-items: flex-start; gap: 1rem; }
   .countdown-boxes { flex-wrap: wrap; }
   .categories-grid { grid-template-columns: 1fr; }
@@ -841,7 +848,6 @@ a.route-name:hover {
     <li><a href="#info">Informació</a></li>
     <li><a href="#recorregut">Recorregut</a></li>
     <li><a href="#media">Fotos & Vídeos</a></li>
-    <li><a href="#contacte">Contacte</a></li>
     <li><a href="#inscripcions" class="nav-cta">Inscriu-te</a></li>
   </ul>
 </nav>
@@ -957,25 +963,25 @@ a.route-name:hover {
     <div class="route-stop">
       <div class="route-dot"></div>
       <a href="https://www.google.es/maps/place/41%C2%B051'51.2%22N+1%C2%B058'14.0%22E/@41.8642289,1.9656701,736m/data=!3m2!1e3!4b1!4m13!1m8!3m7!1s0x12a4fd2056e02add:0xd3bf5fec9369330d!2sPasseig,+08279+Aviny%C3%B3,+Barcelona!3b1!8m2!3d41.8649689!4d1.9706974!16s%2Fg%2F11b6_dy020!3m3!8m2!3d41.864229!4d1.970541?entry=ttu&g_ep=EgoyMDI2MDUyMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="route-name">Passeig</a>
-      <div class="route-km">km 0.4</div>
+      <div class="route-km">230m</div>
     </div>
     <div class="route-line"></div>
     <div class="route-stop">
       <div class="route-dot"></div>
       <a href="https://www.google.es/maps/place/41%C2%B051'49.8%22N+1%C2%B058'16.9%22E/@41.863845,1.9707173,184m/data=!3m2!1e3!4b1!4m4!3m3!8m2!3d41.863845!4d1.971361?entry=ttu&g_ep=EgoyMDI2MDUyMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="route-name">Plaça Major</a>
-      <div class="route-km">km 0.9</div>
+      <div class="route-km">330m</div>
     </div>
     <div class="route-line"></div>
     <div class="route-stop">
       <div class="route-dot"></div>
       <a href="https://www.google.es/maps/place/41%C2%B051'49.7%22N+1%C2%B058'20.6%22E/@41.863796,1.9717533,184m/data=!3m2!1e3!4b1!4m4!3m3!8m2!3d41.863796!4d1.972397?entry=ttu&g_ep=EgoyMDI2MDUyMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="route-name">Baixada ctra principal</a>
-      <div class="route-km">km 1.5</div>
+      <div class="route-km">440m</div>
     </div>
     <div class="route-line"></div>
     <div class="route-stop">
       <div class="route-dot"></div>
       <a href="https://www.google.es/maps/place/41%C2%B051'50.8%22N+1%C2%B058'24.1%22E/@41.864122,1.9727213,184m/data=!3m2!1e3!4b1!4m4!3m3!8m2!3d41.864122!4d1.973365?entry=ttu&g_ep=EgoyMDI2MDUyMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="route-name">Meta</a>
-      <div class="route-km">km 2.1</div>
+      <div class="route-km">550m</div>
     </div>
   </div>
 
@@ -1140,103 +1146,46 @@ a.route-name:hover {
   <h2 class="section-title">FOTOS &<br>VÍDEOS</h2>
 
 <div class="media-tabs">
-  <button class="media-tab active" onclick="switchYear('2025', this)">2025</button>
-  <button class="media-tab" onclick="switchYear('2023', this)">2023</button>
-  <button class="media-tab" onclick="switchYear('2022', this)">2022</button>
+  <button class="media-tab active" onclick="switchTab('fotos', this)">Fotos</button>
+  <button class="media-tab" onclick="switchTab('videos', this)">Vídeos</button>
 </div>
 
-<div id="2025" class="photo-panel">
+<div id="fotos" class="photo-panel">
   <div class="photo-grid">
-<div class="photo-item">
-  <img src="fotos_2025/Foto_1.jpeg" alt="Sortida 2025" style="width:100%; height:100%; object-fit:cover;">
-</div>    <div class="photo-item"><div class="photo-placeholder" style="background: linear-gradient(135deg, #001a2e, #003d6b);">🔧<span class="photo-label">Vehicles 2024</span></div></div>
-    <div class="photo-item"><div class="photo-placeholder" style="background: linear-gradient(135deg, #1a001a, #4a0047);">🚀<span class="photo-label">Baixada 2024</span></div></div>
-    <div class="photo-item"><div class="photo-placeholder" style="background: linear-gradient(135deg, #001a0a, #004a20);">🏆<span class="photo-label">Guanyadors 2024</span></div></div>
+    <div class="photo-item"><img src="Fotos/Foto_1.jpeg" alt="Foto 1" style="width:100%; height:100%; object-fit:cover;"></div>
+    <div class="photo-item"><img src="Fotos/Foto_2.jpeg" alt="Foto 2" style="width:100%; height:100%; object-fit:cover;"></div>
+    <div class="photo-item"><img src="Fotos/Foto_3.jpeg" alt="Foto 3" style="width:100%; height:100%; object-fit:cover;"></div>
+    <div class="photo-item"><img src="Fotos/Foto_4.jpeg" alt="Foto 4" style="width:100%; height:100%; object-fit:cover;"></div>
+    <div class="photo-item"><img src="Fotos/Foto_5.jpeg" alt="Foto 5" style="width:100%; height:100%; object-fit:cover;"></div>
+    <div class="photo-item"><img src="Fotos/Foto_6.jpg" alt="Foto 6" style="width:100%; height:100%; object-fit:cover;"></div>
+    <div class="photo-item"><img src="Fotos/Foto_7.jpeg" alt="Foto 7" style="width:100%; height:100%; object-fit:cover;"></div>
+    <div class="photo-item"><img src="Fotos/Foto_8.jpeg" alt="Foto 8" style="width:100%; height:100%; object-fit:cover;"></div>
+    <div class="photo-item"><img src="Fotos/Foto_9.jpeg" alt="Foto 9" style="width:100%; height:100%; object-fit:cover;"></div>
+    <div class="photo-item"><img src="Fotos/Foto_10.jpeg" alt="Foto 10" style="width:100%; height:100%; object-fit:cover;"></div>
+    <div class="photo-item gran"><img src="Fotos/Foto_11.jpeg" alt="Foto 11" style="width:100%; height:100%; object-fit:cover;"></div>
+    <div class="photo-item"><img src="Fotos/Foto_12.jpeg" alt="Foto 12" style="width:100%; height:100%; object-fit:cover;"></div>
+    <div class="photo-item"><img src="Fotos/Foto_13.jpeg" alt="Foto 13" style="width:100%; height:100%; object-fit:cover;"></div>
+    <div class="photo-item"><img src="Fotos/Foto_14.jpeg" alt="Foto 14" style="width:100%; height:100%; object-fit:cover;"></div>
+    <div class="photo-item"><img src="Fotos/Foto_15.jpeg" alt="Foto 15" style="width:100%; height:100%; object-fit:cover;"></div>
   </div>
 </div>
 
-<div id="2023" class="photo-panel hidden">
-  <div class="photo-grid">
-    <div class="photo-item"><div class="photo-placeholder" style="background: linear-gradient(135deg, #1a1a00, #3d3d00);">🏁<span class="photo-label">Sortida 2023</span></div></div>
-    <div class="photo-item"><div class="photo-placeholder" style="background: linear-gradient(135deg, #001a2e, #003d6b);">🔧<span class="photo-label">Vehicles 2023</span></div></div>
-    <div class="photo-item"><div class="photo-placeholder" style="background: linear-gradient(135deg, #1a001a, #4a0047);">🚀<span class="photo-label">Baixada 2023</span></div></div>
-    <div class="photo-item"><div class="photo-placeholder" style="background: linear-gradient(135deg, #001a0a, #004a20);">🏆<span class="photo-label">Guanyadors 2023</span></div></div>
-  </div>
-</div>
-
-<div id="2022" class="photo-panel hidden">
-  <div class="photo-grid">
-    <div class="photo-item"><div class="photo-placeholder" style="background: linear-gradient(135deg, #1a0010, #4a0030);">🏁<span class="photo-label">Sortida 2022</span></div></div>
-    <div class="photo-item"><div class="photo-placeholder" style="background: linear-gradient(135deg, #001a2e, #003d6b);">🔧<span class="photo-label">Vehicles 2022</span></div></div>
-    <div class="photo-item"><div class="photo-placeholder" style="background: linear-gradient(135deg, #1a001a, #4a0047);">🚀<span class="photo-label">Baixada 2022</span></div></div>
-    <div class="photo-item"><div class="photo-placeholder" style="background: linear-gradient(135deg, #001a0a, #004a20);">🏆<span class="photo-label">Guanyadors 2022</span></div></div>
-  </div>
+<div id="videos" class="photo-panel hidden">
+  <div style="display:flex; align-items:center; justify-content:center; min-height:300px; color:var(--gray); font-size:0.9rem; letter-spacing:1px;">PRÒXIMAMENT</div>
 </div>
 </section>
-
-<!-- CONTACTE -->
-<section id="contacte">
-  <div class="section-eyebrow">Parla amb nosaltres</div>
-  <h2 class="section-title">CONTACTE</h2>
-  <div class="contact-layout">
-    <div>
-      <div class="contact-block">
-        <h3>Organització</h3>
-        <div class="contact-row">
-          <span class="contact-key">Correu</span>
-          <span class="contact-val">aleix.llimargas@gmail.com</span>
-        </div>
-        <div class="contact-row">
-          <span class="contact-key">Telèfon</span>
-          <span class="contact-val">656760557</span>
-        </div>
-        <div class="contact-row">
-          <span class="contact-key">Horari</span>
-          <span class="contact-val">Dilluns – Divendres, 10:00 – 14:00</span>
-        </div>
-        <div class="contact-row">
-          <span class="contact-key">Adreça</span>
-          <span class="contact-val">Plaça Major 1, Local 3</span>
-        </div>
-      </div>
-      <div class="contact-block">
-        <h3>Xarxes socials</h3>
-        <div class="social-grid">
-          <a href="#" class="social-btn">📷 Instagram</a>
-          <a href="#" class="social-btn">📘 Facebook</a>
-          <a href="#" class="social-btn">▶ YouTube</a>
-          <a href="#" class="social-btn">🐦 Twitter/X</a>
-        </div>
-      </div>
-    </div>
-    <div class="contact-form">
-      <h3>Envia'ns un missatge</h3>
-      <div class="form-field">
-        <label>Nom</label>
-        <input type="text" placeholder="El teu nom">
-      </div>
-      <div class="form-field">
-        <label>Correu</label>
-        <input type="email" placeholder="correu@exemple.com">
-      </div>
-      <div class="form-field">
-        <label>Missatge</label>
-        <textarea placeholder="La teva consulta..."></textarea>
-      </div>
-      <button class="btn-main" style="width:100%; margin-top: 0.5rem;" onclick="alert('Missatge enviat! Et respondrem aviat.')">Enviar missatge</button>
-    </div>
+<!-- PATROCINADORS -->
+<section id="patrocinadors" style="background: var(--dark2);">
+  <div class="section-eyebrow">Amb la col·laboració de</div>
+  <h2 class="section-title">ELS QUE HO FAN<br>POSSIBLE</h2>
+  <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; align-items: center; margin-top: 2rem;">
+    <div style="width: 180px; height: 100px; background: var(--dark3); border: 1px solid rgba(255,255,255,0.07); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: var(--gray); font-size: 0.8rem; letter-spacing: 1px;">PATROCINADOR 1</div>
+    <div style="width: 180px; height: 100px; background: var(--dark3); border: 1px solid rgba(255,255,255,0.07); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: var(--gray); font-size: 0.8rem; letter-spacing: 1px;">PATROCINADOR 2</div>
+    <div style="width: 180px; height: 100px; background: var(--dark3); border: 1px solid rgba(255,255,255,0.07); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: var(--gray); font-size: 0.8rem; letter-spacing: 1px;">PATROCINADOR 3</div>
+    <div style="width: 180px; height: 100px; background: var(--dark3); border: 1px solid rgba(255,255,255,0.07); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: var(--gray); font-size: 0.8rem; letter-spacing: 1px;">PATROCINADOR 4</div>
+    <div style="width: 180px; height: 100px; background: var(--dark3); border: 1px solid rgba(255,255,255,0.07); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: var(--gray); font-size: 0.8rem; letter-spacing: 1px;">PATROCINADOR 5</div>
   </div>
 </section>
-<!-- MODAL -->
-<div class="modal-overlay" id="modal">
-  <div class="modal-box" id="modal-box">
-    <div class="modal-icon" id="modal-icon"></div>
-    <div class="modal-title" id="modal-title"></div>
-    <div class="modal-text" id="modal-text"></div>
-    <button class="modal-btn" id="modal-btn" onclick="tancarModal()">D'acord</button>
-  </div>
-</div>
-
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">ANDRÒMINES 2026</div>
@@ -1369,11 +1318,11 @@ function mostrarModal(exit, titol, text) {
 function tancarModal() {
   document.getElementById('modal').classList.remove('show');
 }
-function switchYear(year, btn) {
+function switchTab(tab, btn) {
   document.querySelectorAll('.media-tab').forEach(t => t.classList.remove('active'));
   btn.classList.add('active');
   document.querySelectorAll('.photo-panel').forEach(p => p.classList.add('hidden'));
-  document.getElementById(year).classList.remove('hidden');
+  document.getElementById(tab).classList.remove('hidden');
 }
 </script>
 </body>
